@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h1>添加用户</h1>
+  <form action="/info/add/" method="post">
+    {% csrf_token %}
+    <input type="text" name="user" placeholder="用户名"><br>
+    <input type="text" name="password" placeholder="密码"><br>
+    <input type="text" name="age" placeholder="年龄"><br>
+    <input type="submit" value="提交" style="background-color: rgb(0, 183, 255); height: 50px; width: 120px; border-radius: 10px; margin: 5px; font-size: 20px; border: 0;">
+  </form>
+</body>
+</html>

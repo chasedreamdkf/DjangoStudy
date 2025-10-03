@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<body>
+  <h1>用户登陆</h1>
+  <form method="post" action="/login/">
+    {% csrf_token %}   {% comment %} 表单验证失败 {% endcomment %}
+    <input type="text" name="user" placeholder="用户名">
+    <input type="password" name="pwd" placeholder="用户密码">
+    <input type="submit" value="提交"><br>
+    <span style="color: red;"><h1>{{ error_msg }}</h1></span>
+  </form>
+</body>
+</html>
