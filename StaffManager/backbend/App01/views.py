@@ -41,3 +41,36 @@ def depart_edit(req, id):
     new_title = req.POST.get("title")
     models.Department.objects.filter(id=id).update(title=new_title)
     return redirect("/depart/list/")
+
+
+def user_list(req):
+    """用户管理"""
+    # 获取所有的用户
+    queryset = models.UserInfo.objects.all()
+    # for item in queryset:
+        # print(item.id, item.name, item.password, item.age, item.account, item.create_time.strftime("%Y-%m-%d"), item.get_sex_display(), item.depart.title)
+    return render(req, "user_list.html", {"users": queryset})
+
+
+def user_add(req):
+    """新建用户"""
+    if req.method == "GET":
+        context = {
+            "sex_choices": models.UserInfo.sex_choices,
+            "departs": models.Department.objects.all()
+        }
+        return render(req, "user_add.html", context)
+    # 获取用户数据
+    name = req.POST.get("name")
+    password = req.POST.get("password")
+    age = req.POST.get("age")
+    account = req.POST.get("account")
+    create_time = req.POST.get("create_time")
+    sex = req.POST.get("sex")
+    depart_id = req.POST.get("depart")
+    # print(name, password, age, account, create_time, sex, depart_id)
+    models.UserInfo.objects.create(name=name, password=password,
+                                   age=age, account=account,
+                                   create_time=create_time, sex=sex,
+                                   depart_id=depart_id)
+    return redirect("/user/list/")

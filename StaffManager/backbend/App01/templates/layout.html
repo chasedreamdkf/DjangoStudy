@@ -1,9 +1,4 @@
-# 员工管理系统
-
-## 模板继承
-```django html
-<!-- layout.html -->
-{% comment %} 定义模板 {% endcomment %}
+{% comment %} 模板 {% endcomment %}
 {% load static %}
 <!DOCTYPE html>
 <html lang="zh-cn">
@@ -11,7 +6,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>添加部门</title>
+  <title>title</title>
   <link rel="stylesheet" href={% static 'plugins/bootstrap-3.4.1/css/bootstrap.min.css' %}>
   <style>
     .navbar {
@@ -39,6 +34,7 @@
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav">
           <li><a href="/depart/list/">部门管理</a></li>
+          <li><a href="/user/list/">用户管理</a></li>
           <li><a href="#">Link</a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
@@ -60,39 +56,11 @@
   </nav>
 
   <div>
-  
-    {% block content %}     <!-- content为区块名，可自定义 -->
-    在这里替换内容
-    {% endblock  %}
+    {% block content %}{% endblock  %}
   </div>
 
   <script src="{% static 'js/jquery-3.7.1.min.js' %}"></script>
   <script src="{% static 'plugins/bootstrap-3.4.1/js/bootstrap.min.js' %}"></script>
 </body>
-</html>
 
-<!-- 新页面 -->
-{% extends "layout.html" %}  <!-- 继承模板 -->
-{% block content %}
-  <div class="container">
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <h3 class="panel-title">新建部门</h3>
-      </div>
-      <div class="panel-body">
-        <form method="post">
-            {% csrf_token %}
-          <div class="form-group">
-            <label class="col-sm-2 control-label">标题</label>
-            <div class="col-sm-10">
-              <input type="text" class="form-control" placeholder="标题" name="title">
-            </div>
-          </div>
-            
-          <button type="submit" class="btn btn-primary">保 存</button>
-        </form>
-      </div>
-    </div>
-  </div>
-{% endblock  %}
-```
+</html>
