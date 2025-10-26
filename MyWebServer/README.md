@@ -224,3 +224,7 @@ row_obj = models.UserInfo.objects.filter(id=1).first()
 models.UserInfo.objects.all().update(password=999)            # 更新所有数据
 models.UserInfo.objects.filter(id=2).update(password=123456)   # 条件更新数据
 ```
+
+# 8. Django组件
+- Form
+- ModelForm

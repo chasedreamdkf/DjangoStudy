@@ -1,0 +1,43 @@
+from django.shortcuts import render, redirect
+from App01 import models
+
+# Create your views here.
+def depart_list(req):
+    """部门列表"""
+    departs = models.Department.objects.all()
+    return render(req, 'depart_list.html', {"departs": departs})
+
+
+def depart_add(req):
+    """添加部门"""
+    if req.method == "GET":
+        return render(req, "depart_add.html")
+    
+    # 获取数据
+    title = req.POST.get("title")
+    # 保存到数据库
+    models.Department.objects.create(title=title)
+    
+    return redirect('/depart/list/')
+
+
+def depart_delete(req):
+    """删除部门"""
+    # 获取部门id "https/127.0.0.1:8000/depart/delete/?id=1"
+    id = req.GET.get('id')
+    # 删除
+    models.Department.objects.filter(id=id).delete()
+    
+    return redirect('/depart/list/')
+
+
+# /depart/1/edit
+def depart_edit(req, id):
+    """修改部门"""
+    if req.method == "GET":
+        title = models.Department.objects.filter(id=id).first().title
+        return render(req, "depart_edit.html", {"title": title})
+    # 更新数据
+    new_title = req.POST.get("title")
+    models.Department.objects.filter(id=id).update(title=new_title)
+    return redirect("/depart/list/")
